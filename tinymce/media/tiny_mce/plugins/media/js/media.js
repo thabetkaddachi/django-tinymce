@@ -43,6 +43,13 @@
 
 		if (elm.type == "checkbox")
 			return elm.checked;
+		// Force HTTPS
+		if (elm.value.includes("http") && !elm.value.includes("https"))
+			elm.value = elm.value.replace("http", "https")
+
+		// controle de saisi pour les video de ina.fr
+		if (elm.value.includes("ina.fr") && elm.value.includes("/1/") && !elm.value.includes("/wide/"))
+			elm.value = elm.value.split("\/1\/")[0] + "/1/" + elm.value.split("\/1\/")[1].split("\/")[0]+"/wide/1"
 
 		return elm.value;
 	}
